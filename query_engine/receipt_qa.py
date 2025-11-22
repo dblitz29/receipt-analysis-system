@@ -1,9 +1,9 @@
 from sqlalchemy.exc import SQLAlchemyError
 
 from database.db import SessionLocal
-from text_to_sql import generate_sql, regenerate_sql
-from safe_sqlite import is_safe_select, run_sql
-from answer_formatter import format_answer
+from .text_to_sql import generate_sql, regenerate_sql
+from .safe_sqlite import is_safe_select, run_sql
+from .answer_formatter import format_answer
 
 
 def ask_receipt_db(question: str):
