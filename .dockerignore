@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+vector_db.sqlite
+*.sqlite
+test/
+.tmp_*
+downloaded_image/
+logs/
