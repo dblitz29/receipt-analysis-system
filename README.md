@@ -5,7 +5,7 @@ Users can upload a receipt, the system reads the text, extracts the important fi
 You can also ask simple questions and the app will convert the question into SQL automatically.
 
 ##  System Overview
-![alt text](Assets\architectures.jpg "Title")
+![alt text](Assets/architectures.jpg "Title")
 
 
 ##  Features
