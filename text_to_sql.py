@@ -39,12 +39,19 @@ def _call(prompt: str):
     return data["output"]["message"]["content"][0]["text"].strip()
 
 def _clean(s: str):
-    s = re.sub(r"```(?:sql)?", "", s, flags=re.I).replace("```", "").strip()
-    m = re.search(r"(select\b.*)", s, flags=re.I | re.S)
-    if m:
-        s = m.group(1).strip()
-    s = re.sub(r"\s+", " ", s).strip()
-    return s if s.endswith(";") else s + ";"
+    if not s:
+        return ""
+    s = s.strip()
+    if "```" in s:
+        s = s.replace("```sql", "").replace("```", "").strip()
+    low = s.lower()
+    if "select" in low:
+        i = low.index("select")
+        s = s[i:].strip()
+    s = " ".join(s.split())
+    if not s.endswith(";"):
+        s += ";"
+    return s
 
 def generate_sql(question: str, schema: str = SCHEMA):
     prompt = f"""
@@ -74,9 +81,7 @@ def regenerate_sql(question: str, bad_sql: str, error_msg: str, schema: str = SC
         Question:
         {question}
     """.strip()
-
     return _clean(_call(prompt))
-
 
 if __name__ == "__main__":
     print("model:", MODEL_ID, "| region:", REGION)
