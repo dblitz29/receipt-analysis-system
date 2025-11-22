@@ -1,0 +1,28 @@
+name: docker-build
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t receipt-app:ci .
+
+      - name: Run container
+        run: |
+          docker run -d --name receipt-app -p 5000:5000 receipt-app:ci
+          sleep 3
+
+      - name: Smoke test
+        run: curl --fail http://localhost:5000/ || exit 1
+
+      - name: Stop container
+        if: always()
+        run: docker rm -f receipt-app
