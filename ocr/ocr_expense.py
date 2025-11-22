@@ -4,7 +4,7 @@ import boto3
 
 load_dotenv()
 
-_region = os.getenv("AWS_DEFAULT_REGION")
+_region = os.getenv("AWS_DEFAULT_REGION", "us-east-1")
 _tex = boto3.client("textract", region_name=_region)
 
 def analyze_expense(path: str) -> dict:
