@@ -25,3 +25,7 @@ def parse_expense(data: dict) -> dict:
         "items": raw_items,
         "raw": data,
     }
+
+
+def parse_receipt(data: dict):
+    return parse_expense(data)

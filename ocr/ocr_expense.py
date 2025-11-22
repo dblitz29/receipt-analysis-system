@@ -10,10 +10,12 @@ _tex = boto3.client("textract", region_name=_region)
 def analyze_expense(path: str) -> dict:
     with open(path, "rb") as f:
         b = f.read()
+    return run_ocr(b)
 
-    res = _tex.analyze_expense(Document={"Bytes": b})
-
+def run_ocr(img_bytes: bytes):
+    res = _tex.analyze_expense(Document={"Bytes": img_bytes})
     docs = res.get("ExpenseDocuments", [])
+
     if not docs:
         return {"summary": {}, "items": []}
 
