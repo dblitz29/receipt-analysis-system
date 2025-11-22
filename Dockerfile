@@ -7,9 +7,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+RUN chmod +x entrypoint.sh
+
 ENV PYTHONUNBUFFERED=1
 ENV PORT=5000
 
 EXPOSE 5000
 
-CMD ["python", "app.py"]
+CMD ["./entrypoint.sh"]
