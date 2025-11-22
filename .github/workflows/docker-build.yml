@@ -21,7 +21,7 @@ jobs:
           sleep 3
 
       - name: Smoke test
-        run: curl --fail http://localhost:5000/ || exit 1
+        run: curl curl --fail http://localhost:5000/health || exit 1
 
       - name: Stop container
         if: always()

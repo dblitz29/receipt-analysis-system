@@ -15,6 +15,9 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
 
 @app.get("/receipts-ui")
 def receipts_ui():
