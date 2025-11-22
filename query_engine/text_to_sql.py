@@ -1,7 +1,7 @@
 import os, re, json, boto3
 from dotenv import load_dotenv
 from botocore.config import Config
-from schema_text import SCHEMA
+from .schema_text import SCHEMA
 
 load_dotenv()
 
