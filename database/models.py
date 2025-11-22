@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime, Numeric, ForeignKey
 from sqlalchemy.orm import relationship
-from db import Base
+from database.db import Base
 
 class Receipt(Base):
     __tablename__ = "receipts"
